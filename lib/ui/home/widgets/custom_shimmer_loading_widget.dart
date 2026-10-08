@@ -22,9 +22,9 @@ class CustomShimmerLoadingWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Header lines
-              _roundedRect(width: 60, height: 10),
+              const _ShimmerBar(width: 60, height: 10),
               const SizedBox(height: 10),
-              _roundedRect(width: 120, height: 16),
+              const _ShimmerBar(width: 120, height: 16),
               const SizedBox(height: 20),
 
               // Paragraph lines
@@ -32,16 +32,17 @@ class CustomShimmerLoadingWidget extends StatelessWidget {
                   4,
                   (_) => Padding(
                         padding: const EdgeInsets.symmetric(vertical: 4.0),
-                        child: _roundedRect(width: double.infinity, height: 12),
+                        child: const _ShimmerBar(
+                            width: double.infinity, height: 12),
                       )),
               const SizedBox(height: 20),
 
               // Icon + line
               Row(
                 children: [
-                  _circle(size: 12),
+                  const _ShimmerCircle(size: 12),
                   const SizedBox(width: 10),
-                  _roundedRect(width: 80, height: 10),
+                  const _ShimmerBar(width: 80, height: 10),
                 ],
               ),
               const SizedBox(height: 30),
@@ -57,7 +58,8 @@ class CustomShimmerLoadingWidget extends StatelessWidget {
                         Border.all(color: Colors.purple.shade300, width: 1.5),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: Center(child: _roundedRect(width: 200, height: 14)),
+                  child:
+                      Center(child: const _ShimmerBar(width: 200, height: 14)),
                 ),
               ),
               const Spacer(),
@@ -65,11 +67,11 @@ class CustomShimmerLoadingWidget extends StatelessWidget {
               // Footer
               Row(
                 children: [
-                  _circle(size: 16),
+                  const _ShimmerCircle(size: 16),
                   const SizedBox(width: 10),
-                  _roundedRect(width: 60, height: 10),
+                  const _ShimmerBar(width: 60, height: 10),
                   const Spacer(),
-                  _roundedRect(width: 100, height: 10),
+                  const _ShimmerBar(width: 100, height: 10),
                 ],
               ),
             ],
@@ -78,8 +80,16 @@ class CustomShimmerLoadingWidget extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _roundedRect({double width = 100, double height = 10}) {
+class _ShimmerBar extends StatelessWidget {
+  const _ShimmerBar({this.width = 100, this.height = 10});
+
+  final double width;
+  final double height;
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       width: width,
       height: height,
@@ -89,8 +99,15 @@ class CustomShimmerLoadingWidget extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _circle({double size = 16}) {
+class _ShimmerCircle extends StatelessWidget {
+  const _ShimmerCircle({this.size = 16});
+
+  final double size;
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       width: size,
       height: size,

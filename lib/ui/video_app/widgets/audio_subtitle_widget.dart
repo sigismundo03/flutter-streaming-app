@@ -29,13 +29,18 @@ class AudioSubtitleWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                // Audio Column
-                _buildOptionColumn(
-                    "Audio", audios, selectedAudio, onSelectAudio),
-
-                // Subtitle Column
-                _buildOptionColumn(
-                    "Subtitle", subtitles, selectedSubtitle, onSelectSubtitle),
+                _OptionColumn(
+                  title: "Audio",
+                  options: audios,
+                  selected: selectedAudio,
+                  onSelect: onSelectAudio,
+                ),
+                _OptionColumn(
+                  title: "Subtitle",
+                  options: subtitles,
+                  selected: selectedSubtitle,
+                  onSelect: onSelectSubtitle,
+                ),
               ],
             ),
 
@@ -57,9 +62,23 @@ class AudioSubtitleWidget extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _buildOptionColumn(String title, List<String> options, String selected,
-      Function(String) onSelect) {
+class _OptionColumn extends StatelessWidget {
+  const _OptionColumn({
+    required this.title,
+    required this.options,
+    required this.selected,
+    required this.onSelect,
+  });
+
+  final String title;
+  final List<String> options;
+  final String selected;
+  final ValueChanged<String> onSelect;
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
